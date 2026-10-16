@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Student Management System">
+    <title>Student| Student Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<div class="app-layout">
+
+    <aside class="sidebar">
+        <a class="brand" href="#dashboard">
+            <span class="brand-mark">S</span>
+            <span>Student<span class="brand-accent">Hub</span></span>
+        </a>
+
+        <p class="menu-heading">MAIN MENU</p>
+
+        <nav class="navigation">
+            <a class="nav-link active" href="#dashboard">▦ Dashboard</a>
+            <a class="nav-link" href="#students">♙ Students</a>
+            <a class="nav-link" href="#add-student">＋ Add Student</a>
+            <a class="nav-link" href="#reports">▤ Activity</a>
+        </nav>
+
+        <div class="sidebar-help">
+            <span class="help-mark">?</span>
+            <div>
+                <strong>Need help?</strong>
+                <p>Manage your campus easily</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">COLLEGE ADMINISTRATION</p>
+                <h1>Student Dashboard</h1>
+                <p class="muted">View and manage student records in one place.</p>
+            </div>
+
+            <div class="admin-profile">
+                <div class="admin-avatar">AD</div>
+                <div>
+                    <strong>Admin User</strong>
+                    <span>Administrator</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Statistics -->
+        <section class="stats-grid">
+            <article class="stat-card">
+                <div class="stat-card-top">
+                    <span class="stat-icon icon-purple">♙</span>
+                    <span class="stat-caption">Current records</span>
+                </div>
+                <p class="stat-label">Total Students</p>
+                <h2 id="totalStudents">0</h2>
+                <p class="stat-foot">Students in this system</p>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-card-top">
+                    <span class="stat-icon icon-blue">▣</span>
+                    <span class="stat-caption">In your records</span>
+                </div>
+                <p class="stat-label">Courses</p>
+                <h2 id="totalCourses">0</h2>
+                <p class="stat-foot">Different courses represented</p>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-card-top">
+                    <span class="stat-icon icon-orange">◷</span>
+                    <span class="stat-caption">Sample figure</span>
+                </div>
+                <p class="stat-label">Average Attendance</p>
+                <h2>92.4%</h2>
+                <p class="stat-foot">Demo value</p>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-card-top">
+                    <span class="stat-icon icon-green">✓</span>
+                    <span class="stat-caption">Sample figure</span>
+                </div>
+                <p class="stat-label">Graduated Students</p>
+                <h2>186</h2>
+                <p class="stat-foot">Demo value</p>
+            </article>
+        </section>
+
+        <!-- Student Records -->
+        <section class="panel students-panel" id="students">
+            <div class="section-header">
+                <div>
+                    <h2>Student Records</h2>
+                    <p class="muted">Search, filter, and manage students.</p>
+                </div>
+                <a class="primary-button" href="#add-student">＋ Add Student</a>
+            </div>
+
+            <div class="table-toolbar">
+                <label class="search-field" for="searchInput">
+                    <span>⌕</span>
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Search name, email, roll no..."
+                    >
+                </label>
+
+                <label class="visually-hidden" for="courseFilter">
+                    Filter by course
+                </label>
+
+                <select id="courseFilter" class="course-filter">
+                    <option value="">All Courses</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="Computer Engineering">Computer Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Electronics Engineering">Electronics Engineering</option>
+                </select>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STUDENT</th>
+                            <th>ROLL NO.</th>
+                            <th>COURSE</th>
+                            <th>YEAR</th>
+                            <th>STATUS</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody"></tbody>
+                </table>
+
+                <p id="emptyState" class="empty-state" hidden>
+                    No students found. Try changing your search or add a student.
+                </p>
+            </div>
+
+            <div class="table-footer">
+                <span id="recordCount">Showing 0 students</span>
+                <span class="table-hint">Changes are saved in this browser.</span>
+            </div>
+        </section>
+
+        <!-- Add Student Form -->
+        <div class="lower-grid">
+            <section class="panel add-panel" id="add-student">
+                <div class="section-header">
+                    <div>
+                        <h2>Add a Student</h2>
+                        <p class="muted">Enter student details below.</p>
+                    </div>
+                    <span class="section-symbol">＋</span>
+                </div>
+
+                <form id="studentForm">
+                    <div class="form-field">
+                        <label for="studentName">Full Name</label>
+                        <input
+                            id="studentName"
+                            name="studentName"
+                            type="text"
+                            placeholder="e.g. Ananya Joshi"
+                            required
+                            minlength="2"
+                            maxlength="80"
+                        >
+                    </div>
+
+                    <div class="form-field">
+                        <label for="studentEmail">Email Address</label>
+                        <input
+                            id="studentEmail"
+                            name="studentEmail"
+                            type="email"
+                            placeholder="student@college.edu"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="rollNumber">Roll Number</label>
+                            <input
+                                id="rollNumber"
+                                name="rollNumber"
+                                type="text"
+                                placeholder="IT2024010"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-field">
+                            <label for="studentYear">Academic Year</label>
+                            <select id="studentYear" name="studentYear" required>
+                                <option value="">Select year</option>
+                                <option>1st Year</option>
+                                <option>2nd Year</option>
+                                <option>3rd Year</option>
+                                <option>4th Year</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="studentCourse">Course</label>
+                        <select id="studentCourse" name="studentCourse" required>
+                            <option value="">Choose course</option>
+                            <option>Information Technology</option>
+                            <option>Computer Engineering</option>
+                            <option>Mechanical Engineering</option>
+                            <option>Electronics Engineering</option>
+                        </select>
+                    </div>
+
+                    <button class="primary-button submit-button" type="submit">
+                        Add Student →
+                    </button>
+
+                    <p id="formMessage" class="form-message" role="status"></p>
+                </form>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="panel activity-panel" id="reports">
+                <div class="section-header">
+                    <div>
+                        <h2>Recent Activity</h2>
+                        <p class="muted">Updates from this session</p>
+                    </div>
+                </div>
+
+                <div id="activityList" class="activity-list">
+                    <p class="activity-empty">
+                        No activity yet. Add or delete a student to see updates here.
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <footer class="page-footer">
+            © 2026 StudentHub · Student Management System
+        </footer>
+
+    </main>
+</div>
+</body>
+</html>
